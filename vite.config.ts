@@ -5,8 +5,9 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   // For GitHub Pages, use the repository name as base path
+  // Repository name: cmsrconsultants
   // If deploying to root domain, set base to "/"
-  base: process.env.VITE_BASE_PATH || "/",
+  base: process.env.VITE_BASE_PATH || "/cmsrconsultants/",
   server: {
     host: "::",
     port: 8080,
