@@ -6,8 +6,62 @@
 
 @layer base {
   :root {
-    /* Core palette - Deep Blue & Gold */
+    /* Light mode - White base with Deep Blue & Gold accents */
+    --background: 0 0% 100%;
+    --foreground: 216 71% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 216 71% 10%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 216 71% 10%;
+
+    --primary: 209 83% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 43 100% 50%;
+    --secondary-foreground: 216 71% 10%;
+
+    --muted: 216 20% 90%;
+    --muted-foreground: 216 30% 40%;
+
+    --accent: 270 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 216 20% 85%;
+    --input: 216 20% 90%;
+    --ring: 209 83% 50%;
+
+    --radius: 1rem;
+
+    /* Extended palette */
+    --neon-cyan: 185 100% 50%;
+    --neon-violet: 270 100% 70%;
+    --neon-gold: 43 100% 55%;
+    
+    /* Glassmorphism - Light mode */
+    --glass-bg: 0 0% 100%;
+    --glass-border: 216 71% 10%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(209 83% 30%) 0%, hsl(270 70% 50%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(43 100% 50%) 0%, hsl(30 100% 60%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 95%) 0%, hsl(0 0% 100%) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(209 83% 50% / 0.2) 0%, transparent 70%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 60px hsl(209 83% 50% / 0.2);
+    --shadow-neon: 0 0 30px hsl(185 100% 50% / 0.3);
+    --shadow-gold: 0 0 40px hsl(43 100% 50% / 0.2);
+  }
+
+  .dark {
+    /* Dark mode - Deep Blue base */
     --background: 216 71% 10%;
+
     --foreground: 210 40% 98%;
 
     --card: 216 71% 12%;
@@ -35,14 +89,7 @@
     --input: 216 40% 20%;
     --ring: 209 83% 50%;
 
-    --radius: 1rem;
-
-    /* Extended palette */
-    --neon-cyan: 185 100% 50%;
-    --neon-violet: 270 100% 70%;
-    --neon-gold: 43 100% 55%;
-    
-    /* Glassmorphism */
+    /* Glassmorphism - Dark mode */
     --glass-bg: 216 71% 15%;
     --glass-border: 0 0% 100%;
     
@@ -56,11 +103,6 @@
     --shadow-glow: 0 0 60px hsl(209 83% 50% / 0.3);
     --shadow-neon: 0 0 30px hsl(185 100% 50% / 0.4);
     --shadow-gold: 0 0 40px hsl(43 100% 50% / 0.3);
-  }
-
-  .dark {
-    --background: 216 71% 6%;
-    --foreground: 210 40% 98%;
   }
 }
 
@@ -106,21 +148,32 @@
     border: 1px solid hsl(var(--glass-border) / 0.2);
   }
 
-  /* Light Frosted Glass for Navigation */
+  /* Navigation Glass - Adapts to theme */
   .glass-nav {
-    background: rgba(255, 255, 255, 0.8);
+    background: hsl(var(--glass-bg) / 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 4px 6px hsl(var(--foreground) / 0.05);
   }
 
   .glass-nav-strong {
-    background: rgba(255, 255, 255, 0.9);
+    background: hsl(var(--glass-bg) / 0.9);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 4px 12px hsl(var(--foreground) / 0.1);
+  }
+  
+  /* Dark mode specific navigation styles */
+  .dark .glass-nav {
+    background: hsl(var(--glass-bg) / 0.8);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .dark .glass-nav-strong {
+    background: hsl(var(--glass-bg) / 0.9);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
   }
 
   .glass-card {

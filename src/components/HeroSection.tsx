@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowDown } from 'lucide-react';
+import { useTheme } from '@/hooks/use-theme';
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.3 });
@@ -67,8 +69,12 @@ const HeroSection = () => {
           style={{ border: 'none' }}
           title="3D Background"
         />
-        {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+        {/* Overlay for text readability - more transparent in dark mode */}
+        <div className={`absolute inset-0 bg-gradient-to-b ${
+          theme === 'dark' 
+            ? 'from-background/40 via-background/30 to-background' 
+            : 'from-background/70 via-background/50 to-background'
+        }`} />
       </div>
 
       {/* Floating Orbs */}
@@ -81,7 +87,11 @@ const HeroSection = () => {
         <div className="max-w-5xl mx-auto">
           {/* Tag */}
           <div className="inline-block mb-6">
-            <span className="glass-card px-6 py-2 text-xs font-medium tracking-[0.2em] uppercase text-secondary inline-block">
+            <span className={`px-6 py-2 text-xs font-medium tracking-[0.2em] uppercase inline-block rounded-2xl backdrop-blur-lg transition-all duration-500 ${
+              theme === 'light' 
+                ? 'text-foreground bg-white/90 border border-border/50' 
+                : 'glass-card text-secondary'
+            }`}>
               Social Impact Consultancy
             </span>
           </div>

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import gsap from 'gsap';
 import cmsrLogo from '@/assets/CMSR Logo.png';
+import { useTheme } from '@/hooks/use-theme';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,7 @@ const Navigation = () => {
   const [isMouseAtTop, setIsMouseAtTop] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const SCROLL_THRESHOLD = 200; // High threshold - scroll 200px before hiding
 
@@ -141,7 +143,7 @@ const Navigation = () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`text-sm font-medium transition-colors duration-300 relative group ${
-                    isActive ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'
+                    isActive ? 'text-foreground font-semibold' : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   {link.name}
@@ -151,29 +153,47 @@ const Navigation = () => {
                 </Link>
               );
             })}
+            <button
+              onClick={toggleTheme}
+              className="px-4 py-2 rounded-lg text-foreground hover:bg-muted transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              <span>{theme === 'dark' ? 'light' : 'dark'}</span>
+            </button>
             <Link
               to="/location"
-              className="px-6 py-2 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors duration-300"
+              className="px-6 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors duration-300"
             >
               Get in Touch
             </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-900"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="px-3 py-2 rounded-lg text-foreground hover:bg-muted transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              <span>{theme === 'dark' ? 'light' : 'dark'}</span>
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </nav>
 
           {/* Mobile Menu */}
       {isOpen && (
         <div className="mobile-menu fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-white/95 backdrop-blur-xl" />
+          <div className="absolute inset-0 bg-background/95 backdrop-blur-xl" />
           <div className="relative h-full flex flex-col items-center justify-center gap-8 p-8">
             {navLinks.map((link, index) => {
               const isActive = location.pathname === link.href;
@@ -186,7 +206,7 @@ const Navigation = () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`mobile-link text-3xl font-light transition-colors duration-300 ${
-                    isActive ? 'text-primary font-semibold' : 'text-gray-800 hover:text-primary'
+                    isActive ? 'text-primary font-semibold' : 'text-foreground hover:text-primary'
                   }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -197,7 +217,7 @@ const Navigation = () => {
             <Link
               to="/location"
               onClick={() => setIsOpen(false)}
-              className="mobile-link px-8 py-4 bg-primary text-white rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors duration-300 mt-4"
+              className="mobile-link px-8 py-4 bg-primary text-primary-foreground rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors duration-300 mt-4"
             >
               Get in Touch
             </Link>

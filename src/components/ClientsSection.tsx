@@ -115,23 +115,6 @@ const ClientsSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Static grid for larger screens */}
-        <div className="hidden lg:grid grid-cols-4 gap-6 mt-12">
-          {clients.map((client, index) => (
-            <div
-              key={client.name}
-              className="client-card glass-card p-8 flex items-center justify-center group hover:scale-105 transition-all duration-500"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="max-w-full max-h-16 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-              />
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
