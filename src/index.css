@@ -289,6 +289,15 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* Lock dialog position */
+  [data-radix-dialog-content] {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    will-change: auto !important;
+  }
 }
 
 @layer utilities {
