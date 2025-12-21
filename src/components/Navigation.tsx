@@ -143,7 +143,7 @@ const Navigation = () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`text-sm font-medium transition-colors duration-300 relative group ${
-                    isActive ? 'text-foreground font-semibold' : 'text-muted-foreground hover:text-foreground'
+                    isActive ? 'text-gray-900 font-semibold' : 'text-gray-700 hover:text-gray-900'
                   }`}
                 >
                   {link.name}
@@ -155,7 +155,7 @@ const Navigation = () => {
             })}
             <button
               onClick={toggleTheme}
-              className="px-4 py-2 rounded-lg text-foreground hover:bg-muted transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
+              className="px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
@@ -173,7 +173,7 @@ const Navigation = () => {
           <div className="md:hidden flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="px-3 py-2 rounded-lg text-foreground hover:bg-muted transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
+              className="px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors duration-300 flex items-center gap-2 text-sm font-medium"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
@@ -181,7 +181,7 @@ const Navigation = () => {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-foreground"
+              className="p-2 text-gray-900"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -193,7 +193,7 @@ const Navigation = () => {
           {/* Mobile Menu */}
       {isOpen && (
         <div className="mobile-menu fixed inset-0 z-40 md:hidden">
-          <div className="absolute inset-0 bg-background/95 backdrop-blur-xl" />
+          <div className="absolute inset-0 bg-white/95 backdrop-blur-xl" />
           <div className="relative h-full flex flex-col items-center justify-center gap-8 p-8">
             {navLinks.map((link, index) => {
               const isActive = location.pathname === link.href;
@@ -206,7 +206,7 @@ const Navigation = () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`mobile-link text-3xl font-light transition-colors duration-300 ${
-                    isActive ? 'text-primary font-semibold' : 'text-foreground hover:text-primary'
+                    isActive ? 'text-primary font-semibold' : 'text-gray-800 hover:text-primary'
                   }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >

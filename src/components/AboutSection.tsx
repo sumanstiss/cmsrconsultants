@@ -141,6 +141,10 @@ const AboutSection = () => {
             </h2>
 
             <div className="space-y-6 text-muted-foreground text-lg">
+            <p>
+                <span className="text-foreground font-semibold">About US : </span>
+                Established in 2011, CMSR Consultants is a multi-disciplinary research and communication think tank. In a short span of time, CMSR has established itself as an organization of repute and credibility with specialization in Social Research, Policy Research, Monitoring & Evaluation, Development Communications and Out¬reach Programmes. With its pan-India presence and a strong network of Regional Partners and Business Associates, CMSR is fully capable of taking large scale projects in any part of the country.
+              </p>
               <p>
                 <span className="text-foreground font-semibold">Vision:</span> To
                 create a better-informed, educated, and aware world.

@@ -148,32 +148,21 @@
     border: 1px solid hsl(var(--glass-border) / 0.2);
   }
 
-  /* Navigation Glass - Adapts to theme */
+  /* Navigation Glass - Always light mode */
   .glass-nav {
-    background: hsl(var(--glass-bg) / 0.8);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid hsl(var(--border) / 0.5);
-    box-shadow: 0 4px 6px hsl(var(--foreground) / 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   }
 
   .glass-nav-strong {
-    background: hsl(var(--glass-bg) / 0.9);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border-bottom: 1px solid hsl(var(--border) / 0.5);
-    box-shadow: 0 4px 12px hsl(var(--foreground) / 0.1);
-  }
-  
-  /* Dark mode specific navigation styles */
-  .dark .glass-nav {
-    background: hsl(var(--glass-bg) / 0.8);
-    border-bottom: 1px solid hsl(var(--border) / 0.5);
-  }
-
-  .dark .glass-nav-strong {
-    background: hsl(var(--glass-bg) / 0.9);
-    border-bottom: 1px solid hsl(var(--border) / 0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .glass-card {
