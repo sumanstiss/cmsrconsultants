@@ -414,18 +414,18 @@ const WhatWeDo = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main ref={contentRef} className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16 animate-in">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/20 text-secondary mb-6">
+            <span className="text-secondary font-bold tracking-wider uppercase text-sm mb-4 block">
               WHAT WE DO
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6">
               Our Services
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               End-to-end solutions from research to communication and training
             </p>
           </div>
@@ -439,18 +439,26 @@ const WhatWeDo = () => {
                 <button
                   key={service.id}
                   onClick={() => setActiveService(service.id)}
-                  className={`glass-card p-6 text-left group hover:scale-[1.02] transition-all duration-500 ${
-                    isActive ? 'ring-2 ring-secondary' : ''
-                  }`}
+                  className={`p-6 text-left group hover:scale-[1.02] transition-all duration-500 rounded-xl border ${isActive
+                    ? 'bg-primary border-primary text-white shadow-xl'
+                    : 'bg-white border-slate-200 hover:border-primary/50 hover:shadow-md'
+                    }`}
                 >
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 ${
-                    isActive ? 'bg-secondary text-background' : 'bg-secondary/20 text-secondary group-hover:bg-secondary/30'
-                  }`}>
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 ${isActive
+                    ? 'bg-white/10 text-white'
+                    : 'bg-primary/5 text-primary group-hover:bg-primary/10'
+                    }`}>
                     <ServiceIcon size={32} />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">{service.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{service.subtitle}</p>
-                  <p className="text-xs text-muted-foreground line-clamp-3">{service.short}</p>
+                  <h3 className={`text-xl font-serif font-bold mb-2 ${isActive ? 'text-white' : 'text-primary'}`}>
+                    {service.title}
+                  </h3>
+                  <p className={`text-sm mb-3 font-medium ${isActive ? 'text-white/90' : 'text-slate-600'}`}>
+                    {service.subtitle}
+                  </p>
+                  <p className={`text-xs line-clamp-3 leading-relaxed ${isActive ? 'text-white/70' : 'text-slate-500'}`}>
+                    {service.short}
+                  </p>
                 </button>
               );
             })}
@@ -458,19 +466,19 @@ const WhatWeDo = () => {
 
           {/* Service Details Banner */}
           <div className="mb-16 animate-in">
-            <div className="glass-card p-8">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-16 h-16 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary flex-shrink-0">
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-xl bg-white shadow-sm border border-slate-100 flex items-center justify-center text-primary flex-shrink-0">
                     <IconComponent size={32} />
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-secondary mb-1 block">SERVICE</span>
-                    <h3 className="text-2xl font-bold text-foreground mb-1">{selectedService.title}</h3>
-                    <p className="text-sm text-muted-foreground">{selectedService.subtitle}</p>
+                    <span className="text-xs font-bold text-secondary tracking-wider uppercase mb-1 block">SERVICE FOCUS</span>
+                    <h3 className="text-2xl font-serif font-bold text-primary mb-2">{selectedService.title}</h3>
+                    <p className="text-sm font-medium text-slate-600">{selectedService.subtitle}</p>
                   </div>
                 </div>
-                <div className="flex-1 text-muted-foreground md:pl-8">
+                <div className="flex-1 text-slate-600 md:pl-8 md:border-l border-slate-200 leading-relaxed text-lg">
                   <p>{selectedService.long}</p>
                 </div>
               </div>
@@ -486,42 +494,51 @@ const WhatWeDo = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">Where We Deliver</h2>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
               {CATEGORY_LIST.map((area, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveCategory(area)}
-                  className={`glass-card px-6 py-4 hover:scale-105 transition-transform duration-300 ${
-                    activeCategory === area ? 'ring-2 ring-secondary bg-secondary/10' : ''
-                  }`}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === area
+                    ? 'bg-primary text-white shadow-md transform scale-105'
+                    : 'bg-white border border-slate-200 text-slate-600 hover:border-primary/50 hover:text-primary'
+                    }`}
                 >
-                  <span className="text-foreground font-medium">{area}</span>
+                  {area}
                 </button>
               ))}
             </div>
 
             {/* Projects Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
               {filteredProjects.slice(0, 3).map((project) => (
                 <div
                   key={project.id}
                   onClick={() => setSelectedProject(project)}
-                  className="glass-card overflow-hidden cursor-pointer group hover:scale-[1.02] transition-all duration-300"
+                  className="bg-white rounded-xl overflow-hidden cursor-pointer group hover:shadow-xl border border-slate-100 transition-all duration-300 flex flex-col h-full"
                 >
-                  <div className="h-40 overflow-hidden">
-                    <img src={project.images?.[0]} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <div className="h-48 overflow-hidden relative">
+                    <img src={project.images?.[0]} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300" />
                   </div>
-                  <div className="p-6">
-                    <div className="text-sm text-secondary font-semibold mb-2">{project.category}</div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
-                    <div className="text-sm text-muted-foreground mb-3">{project.location} · {project.year}</div>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.summary}</p>
-                    <Link
-                      to={`/projects/${project.id}`}
-                      className="text-secondary hover:underline text-sm font-medium"
-                    >
-                      View Details →
-                    </Link>
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="text-xs font-bold text-secondary uppercase tracking-wider mb-3">{project.category}</div>
+                    <h3 className="text-xl font-serif font-bold text-primary mb-3 leading-tight group-hover:text-secondary transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    <div className="text-sm text-slate-500 mb-4 flex items-center gap-2">
+                      <span>{project.location}</span>
+                      <span className="w-1 h-1 bg-slate-300 rounded-full" />
+                      <span>{project.year}</span>
+                    </div>
+                    <p className="text-slate-600 text-sm mb-6 line-clamp-3 leading-relaxed flex-1">
+                      {project.summary}
+                    </p>
+                    <div className="mt-auto pt-4 border-t border-slate-100 flex items-end justify-end">
+                      <span className="text-primary font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300 flex items-center gap-1">
+                        View Details →
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -532,7 +549,7 @@ const WhatWeDo = () => {
           <div className="mt-12 text-center animate-in">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-3 glass-card px-8 py-4 rounded-lg font-semibold hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center gap-3 bg-secondary text-primary px-8 py-4 rounded-full font-bold hover:bg-secondary/90 hover:scale-105 transition-all duration-300 shadow-lg"
             >
               Explore All Projects
             </Link>

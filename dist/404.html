@@ -6,7 +6,9 @@
     <script>
       // Single Page Apps for GitHub Pages
       // https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 1;
+      // This script takes a request for a missing page and redirects to index.html
+      // with the path as a query parameter, which React Router can then handle
+      var pathSegmentsToKeep = 1; // Keep the repository name segment
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
@@ -18,6 +20,7 @@
     </script>
   </head>
   <body>
+    <p>Redirecting...</p>
   </body>
 </html>
 

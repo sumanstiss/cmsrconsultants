@@ -5,7 +5,9 @@ import Preloader from '@/components/Preloader';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import StatsCounter from '@/components/StatsCounter';
+
+import MissionSection from '@/components/MissionSection';
+import ProcessSection from '@/components/ProcessSection';
 import OurPresence from '@/components/OurPresence';
 import ClientsSection from '@/components/ClientsSection';
 import ProjectsSection from '@/components/ProjectsSection';
@@ -51,13 +53,15 @@ const Index = () => {
         <Navigation />
         <main>
           <HeroSection />
-          <StatsCounter />
+          <MissionSection />
           <AboutSection />
+          <ProcessSection />
+          <ProjectsSection />
           <OurPresence />
           <ClientsSection />
-          <ProjectsSection />
           <ContactSection />
         </main>
+
         <Footer />
       </div>
     </>

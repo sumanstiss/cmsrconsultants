@@ -9,15 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-border bg-transparent text-foreground hover:bg-muted hover:border-border/80",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg hover:-translate-y-0.5",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm",
+        outline: "border border-primary/20 bg-transparent text-primary hover:bg-primary/5 hover:border-primary/50",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-md hover:shadow-lg hover:-translate-y-0.5",
         ghost: "hover:bg-muted hover:text-foreground",
-        link: "text-secondary underline-offset-4 hover:underline",
-        glass: "glass-card border-border/30 text-foreground hover:border-secondary/40 hover:shadow-[0_0_30px_hsl(var(--secondary)/0.2)]",
-        neon: "relative bg-transparent border border-border/30 text-foreground overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-r before:from-neon-cyan/20 before:to-neon-violet/20 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 hover:border-neon-cyan/50 hover:shadow-[0_0_30px_hsl(var(--neon-cyan)/0.3)]",
-        accent: "bg-secondary text-secondary-foreground hover:bg-secondary/90 hover:shadow-[0_0_30px_hsl(var(--secondary)/0.4)]",
+        link: "text-primary underline-offset-4 hover:underline",
+        glass: "glass-card border-white/20 text-foreground hover:bg-white/40 hover:border-white/40 transition-all duration-300",
+        shine: "relative overflow-hidden bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-primary/25 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:animate-shimmer",
+        accent: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-md",
+
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -36,7 +37,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 

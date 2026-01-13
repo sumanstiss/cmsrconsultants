@@ -19,8 +19,8 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
-  { 
-    icon: Globe, 
+  {
+    icon: Globe,
     label: 'Research',
     title: 'RESEARCH, MONITORING & EVALUATION',
     content: `Research and Monitoring & Evaluation constitute one of the core areas of CMSR Consultants. We provide broad based consultancy in the domains of Social Research, Policy Research, Market Research, Communication Research, Formative Research, Surveys and exit polls etc. The Core Research team comes from diverse disciplines – Sociology, Economics, Agriculture, Geography, Disaster Management etc. There is an extensive network of field executives, supervisors and managers to conduct any large scale research or evaluation study in any part of the country.`,
@@ -34,8 +34,8 @@ const skills = [
       'Need Assessment'
     ]
   },
-  { 
-    icon: Users, 
+  {
+    icon: Users,
     label: 'Communication',
     title: 'COMMUNICATION AND BRANDING',
     content: `CMSR Consultants offer Innovative and integrated communication solutions matched by a provocative approach and irresistible creative work. Over the years, the team has worked on several pan-India studies and campaigns launched by national and international organizations. We have an in-house design and branding team to deliver quality work in a time-bound manner. In addition, more than 50 production houses are empanelled with us for audio-visual material production viz corporate films, documentaries, project documentation, radio and tv campaigns etc.`,
@@ -47,8 +47,8 @@ const skills = [
       'Translation and Transcription'
     ]
   },
-  { 
-    icon: TrendingUp, 
+  {
+    icon: TrendingUp,
     label: 'Strategy',
     title: 'STRATEGY & CONSULTING',
     content: `CMSR Consultants provides strategic consulting services to help organizations achieve their goals through evidence-based decision making and innovative approaches. Our strategy team combines research insights with practical implementation frameworks.`,
@@ -60,8 +60,8 @@ const skills = [
       'Impact Strategy'
     ]
   },
-  { 
-    icon: BookOpen, 
+  {
+    icon: BookOpen,
     label: 'Training',
     title: 'TRAINING & CAPACITY BUILDING',
     content: `Capacity Building, Training and Skills Development forms an integral part of any organizational or programmatic plan. CMSR Consultants has a team of senior technical trainers, consultants and advisors to carry out training and capacity building sessions and workshops on a variety of subjects in both rural and urban areas.`,
@@ -74,8 +74,8 @@ const skills = [
       'Development communication professionals'
     ]
   },
-  { 
-    icon: Heart, 
+  {
+    icon: Heart,
     label: 'Social Impact',
     title: 'SOCIAL IMPACT & OUTREACH',
     content: `CMSR Consultants provides logistic, creative and documentation support to organize advocacy events, workshops, seminars and Consultation Forums. We provide event management support on Pan-India basis.`,
@@ -87,8 +87,8 @@ const skills = [
       'Open Forums with farmers, youth, women groups and school children'
     ]
   },
-  { 
-    icon: Lightbulb, 
+  {
+    icon: Lightbulb,
     label: 'Innovation',
     title: 'INNOVATION & EVENT MANAGEMENT',
     content: `CMSR Consultants provides logistic, creative and documentation support to organize advocacy events, workshops, seminars and Consultation Forums. We provide event management support on Pan-India basis.`,
@@ -215,28 +215,18 @@ const AboutSection = () => {
           <div ref={contentRef} className="opacity-0">
             <div className="inline-block mb-6">
               <span className="text-xs font-medium tracking-[0.2em] uppercase text-secondary">
-                About CMSR
+                Our Expertise
               </span>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Creating a Better-Informed{' '}
-              <span className="text-gradient-neon">World</span>
+              Comprehensive Solutions for{' '}
+              <span className="text-gradient-neon">Social Impact</span>
             </h2>
 
-            <div className="space-y-6 text-muted-foreground text-lg">
-            <p>
-                <span className="text-foreground font-semibold">About US : </span>
-                Established in 2011, CMSR Consultants is a multi-disciplinary research and communication think tank. In a short span of time, CMSR has established itself as an organization of repute and credibility with specialization in Social Research, Policy Research, Monitoring & Evaluation, Development Communications and Out¬reach Programmes. With its pan-India presence and a strong network of Regional Partners and Business Associates, CMSR is fully capable of taking large scale projects in any part of the country.
-              </p>
+            <div className="space-y-6 text-muted-foreground text-lg mb-12">
               <p>
-                <span className="text-foreground font-semibold">Vision:</span> To
-                create a better-informed, educated, and aware world.
-              </p>
-              <p>
-                <span className="text-foreground font-semibold">Mission:</span> To
-                catalyse the power of research and communication for social equity
-                and progressive change.
+                We bring together a multi-disciplinary team of researchers, strategists, and communicators to deliver holistic solutions across the development spectrum.
               </p>
             </div>
 
@@ -244,7 +234,7 @@ const AboutSection = () => {
             <div className="skills-grid grid grid-cols-3 gap-4 mt-12">
               {skills.map((skill, index) => {
                 const isHovered = hoveredIndex === index;
-                
+
                 return (
                   <div
                     key={skill.label}
@@ -259,7 +249,7 @@ const AboutSection = () => {
                         {skill.label}
                       </span>
                     </div>
-                    
+
                     {/* Hover Preview - Quarter way expansion */}
                     <div
                       className="overflow-hidden transition-all duration-300 ease-in-out"
@@ -285,9 +275,9 @@ const AboutSection = () => {
                 setSelectedSkill(null);
               }
             }}>
-              <DialogContent 
+              <DialogContent
                 className="max-w-2xl max-h-[85vh] overflow-y-auto glass-card border-border/50 cursor-default"
-                style={{ 
+                style={{
                   position: 'fixed',
                   left: '50%',
                   top: '50%',

@@ -112,7 +112,7 @@ const ProjectsSection = () => {
     // Header animation
     gsap.fromTo(
       '.projects-header',
-      { opacity: 0, y: 50 },
+      { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
@@ -129,18 +129,16 @@ const ProjectsSection = () => {
     // Cards stagger animation
     gsap.fromTo(
       '.project-card',
-      { opacity: 0, y: 80, scale: 0.95 },
+      { opacity: 0, y: 50 },
       {
         opacity: 1,
         y: 0,
-        scale: 1,
-        duration: 0.6,
+        duration: 0.8,
         stagger: 0.15,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: '.projects-scroll',
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
         },
       }
     );
@@ -164,38 +162,38 @@ const ProjectsSection = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative py-32 overflow-hidden"
+      className="relative py-24 bg-white overflow-hidden"
     >
-      {/* Background */}
-      <div className="glow-orb glow-orb-accent w-[600px] h-[600px] top-0 left-1/2 -translate-x-1/2 opacity-20" />
-
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-secondary mb-4 block">
-              Thematic Areas
+        <div className="projects-header flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-xl">
+            <span className="text-secondary font-bold tracking-wider uppercase text-sm mb-3 block">
+              Our Expertise
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold">
-              Our <span className="text-gradient-accent">Projects</span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-4">
+              Thematic Areas
             </h2>
+            <p className="text-muted-foreground text-lg">
+              Delivering high-impact solutions across key social development sectors.
+            </p>
           </div>
 
           {/* Navigation Arrows */}
-          <div className="flex gap-3">
+          <div className="flex gap-4">
             <button
               onClick={() => scroll('left')}
-              className="glass-card p-4 hover:border-secondary/40 transition-all duration-300 group"
+              className="p-4 rounded-full border border-gray-200 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 group"
               aria-label="Previous projects"
             >
-              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={() => scroll('right')}
-              className="glass-card p-4 hover:border-secondary/40 transition-all duration-300 group"
+              className="p-4 rounded-full border border-gray-200 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 group"
               aria-label="Next projects"
             >
-              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ChevronRight className="w-6 h-6" />
             </button>
           </div>
         </div>
@@ -203,73 +201,82 @@ const ProjectsSection = () => {
         {/* Horizontal Scroll Container */}
         <div
           ref={scrollRef}
-          className="projects-scroll flex gap-6 overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory"
+          className="projects-scroll flex gap-8 overflow-x-auto pb-12 scrollbar-hide snap-x snap-mandatory pt-4 px-1"
         >
           {projects.map((project) => (
             <div
               key={project.id}
-              className="project-card flex-none w-[320px] md:w-[400px] snap-start opacity-0"
+              className="project-card flex-none w-[340px] md:w-[420px] snap-start opacity-0"
             >
-              <div className="glass-card overflow-hidden group h-full flex flex-col">
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 h-full flex flex-col border border-gray-100 group">
                 {/* Image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-64 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+
+                  {/* Category Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-white/95 text-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide backdrop-blur-sm shadow-sm">
+                      {project.tags[0]}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-secondary transition-colors duration-300">
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-serif font-bold text-primary mb-3 group-hover:text-secondary transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  <p className="text-slate-600 leading-relaxed mb-6 line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Project Details - Collapsible */}
-                  {project.details && project.details.length > 0 && (
-                    <div className="mb-4">
-                      <button
-                        onClick={() => {
-                          const newExpanded = new Set(expandedCards);
-                          if (newExpanded.has(project.id)) {
-                            newExpanded.delete(project.id);
-                          } else {
-                            newExpanded.add(project.id);
-                          }
-                          setExpandedCards(newExpanded);
-                        }}
-                        className="flex items-center justify-between w-full text-xs font-semibold text-foreground mb-2 hover:text-secondary transition-colors"
-                      >
-                        <span>Key Projects:</span>
-                        {expandedCards.has(project.id) ? (
-                          <ChevronUp className="w-4 h-4" />
-                        ) : (
-                          <ChevronDown className="w-4 h-4" />
+                  <div className="mt-auto">
+                    {/* Project Details - Collapsible */}
+                    {project.details && project.details.length > 0 && (
+                      <div className="mb-6 border-t border-gray-100 pt-4">
+                        <button
+                          onClick={() => {
+                            const newExpanded = new Set(expandedCards);
+                            if (newExpanded.has(project.id)) {
+                              newExpanded.delete(project.id);
+                            } else {
+                              newExpanded.add(project.id);
+                            }
+                            setExpandedCards(newExpanded);
+                          }}
+                          className="flex items-center justify-between w-full text-sm font-semibold text-primary/80 mb-2 hover:text-primary transition-colors"
+                        >
+                          <span>Key Interventions</span>
+                          {expandedCards.has(project.id) ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
+                        </button>
+                        {expandedCards.has(project.id) && (
+                          <ul className="space-y-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                            {project.details.map((detail, index) => (
+                              <li key={index} className="text-sm text-slate-500 flex items-start leading-snug">
+                                <span className="text-secondary mr-2 mt-1 flex-shrink-0">•</span>
+                                <span>{detail}</span>
+                              </li>
+                            ))}
+                          </ul>
                         )}
-                      </button>
-                      {expandedCards.has(project.id) && (
-                        <ul className="space-y-1.5 animate-in fade-in slide-in-from-top-2 duration-200">
-                          {project.details.map((detail, index) => (
-                            <li key={index} className="text-[11px] text-muted-foreground flex items-start">
-                              <span className="text-secondary mr-1.5 mt-0.5 flex-shrink-0">•</span>
-                              <span className="leading-tight">{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  )}
+                      </div>
+                    )}
 
-                  {/* CTA */}
-                  <button className="flex items-center gap-2 text-sm font-medium text-secondary group/btn">
-                    Learn More
-                    <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" />
-                  </button>
+                    {/* CTA */}
+                    <button className="flex items-center gap-2 text-sm font-bold text-secondary uppercase tracking-wider group/btn hover:underline decoration-2 underline-offset-4">
+                      Explore Projects
+                      <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

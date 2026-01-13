@@ -21,7 +21,7 @@ const OurPresence = () => {
     // Animate section header
     gsap.fromTo(
       sectionRef.current.querySelector('.section-header'),
-      { opacity: 0, y: 40 },
+      { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
@@ -37,7 +37,7 @@ const OurPresence = () => {
     // Animate map
     gsap.fromTo(
       mapRef.current,
-      { opacity: 0, scale: 0.9 },
+      { opacity: 0, scale: 0.95 },
       {
         opacity: 1,
         scale: 1,
@@ -53,10 +53,10 @@ const OurPresence = () => {
     // Animate counter
     gsap.fromTo(
       counterRef.current,
-      { opacity: 0, y: 30 },
+      { opacity: 0, x: 30 },
       {
         opacity: 1,
-        y: 0,
+        x: 0,
         duration: 0.8,
         ease: 'power2.out',
         scrollTrigger: {
@@ -79,9 +79,9 @@ const OurPresence = () => {
         hasAnimated.current = true;
 
         gsap.to({}, {
-          duration: 2,
-          ease: 'power2.out',
-          onUpdate: function() {
+          duration: 2.5,
+          ease: 'power1.out',
+          onUpdate: function () {
             const progress = this.progress();
             setCount(Math.floor(progress * 25));
           },
@@ -94,61 +94,79 @@ const OurPresence = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-32 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
+    <section ref={sectionRef} className="py-24 bg-white relative overflow-hidden">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style={{
+          backgroundImage: 'radial-gradient(#093C73 1px, transparent 1px)',
+          backgroundSize: '32px 32px'
+        }}
+      />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="section-header text-center mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/20 text-secondary mb-4">
+          <span className="inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider bg-secondary/10 text-secondary mb-4">
             Our Reach
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-primary mb-6">
             Our Presence
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Expanding our impact across India, one state at a time
+          <div className="w-24 h-1 bg-secondary mx-auto mb-6 rounded-full" />
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-sans leading-relaxed">
+            Expanding our impact across India, delivering real-time intelligence from the grassroots to drive meaningful change.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Map Section */}
-          <div ref={mapRef} className="relative">
-            <div className="glass-card p-8 rounded-3xl overflow-hidden">
-              <div className="relative w-full aspect-square">
+          <div ref={mapRef} className="relative group">
+            <div className="relative z-10 p-4 bg-white rounded-3xl shadow-xl border border-gray-100 transition-shadow duration-500 group-hover:shadow-2xl">
+              <div className="relative w-full aspect-[4/3] flex items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
                 <img
                   src={indiaMap}
                   alt="India Map - Our Presence"
-                  className="w-full h-full object-contain transition-all duration-500"
-                  style={theme === 'light' ? { 
-                    filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(194deg) brightness(104%) contrast(97%)'
-                  } : {}}
+                  className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                  style={{
+                    // Filter to match #093C73 (Deep Blue) approximately
+                    filter: 'invert(18%) sepia(35%) saturate(3665%) hue-rotate(198deg) brightness(92%) contrast(93%)'
+                  }}
                 />
-                {/* Overlay glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
               </div>
             </div>
+            {/* Decorative blob behind map */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-primary/5 to-secondary/5 rounded-[2.5rem] blur-2xl -z-10" />
           </div>
 
           {/* Counter Section */}
-          <div ref={counterRef} className="flex flex-col items-center lg:items-start">
-            <div className="glass-card p-8 md:p-12 text-center lg:text-left max-w-md">
-              <div className="w-16 h-16 mx-auto lg:mx-0 mb-6 rounded-2xl bg-secondary/20 flex items-center justify-center text-secondary">
-                <MapPin size={32} />
+          <div ref={counterRef} className="flex flex-col items-center lg:items-start space-y-8">
+            <div className="bg-primary/5 p-8 md:p-10 rounded-3xl rounded-tl-none border-l-4 border-secondary w-full max-w-md hover:bg-primary/10 transition-colors duration-300">
+              <div className="flex items-start gap-6">
+                <div className="w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-primary shrink-0">
+                  <MapPin size={28} strokeWidth={2.5} />
+                </div>
+                <div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-7xl font-bold text-primary tracking-tight font-serif">
+                      {count}
+                    </span>
+                    <span className="text-4xl font-bold text-secondary">+</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-primary mt-2">States Covered</h3>
+                </div>
               </div>
-              <div className="text-6xl md:text-7xl font-bold text-foreground mb-4">
-                {count}+
+
+              <div className="mt-6 pt-6 border-t border-primary/10">
+                <p className="text-slate-600 text-lg leading-relaxed">
+                  Our extensive network spans across the nation, enabling us to gather local insights and implement scalable solutions in diverse environments.
+                </p>
               </div>
-              <div className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-2">
-                States Covered
-              </div>
-              <p className="text-muted-foreground text-base mt-4">
-                Our extensive network spans across multiple states, enabling us to create meaningful social impact nationwide.
-              </p>
+            </div>
+
+            {/* Additional Stat or Callout */}
+            <div className="flex items-center gap-4 text-primary/80 font-medium">
+              <div className="h-px w-12 bg-secondary" />
+              <span>Pan-India Network</span>
             </div>
           </div>
         </div>

@@ -75,25 +75,25 @@ const OurThinking = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main ref={contentRef} className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16 animate-in">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/20 text-secondary mb-6">
+            <span className="text-secondary font-bold tracking-wider uppercase text-sm mb-4 block">
               OUR THINKING
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6">
               Our Philosophy
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               The principles and approaches that guide our work towards creating meaningful social impact
             </p>
           </div>
 
           {/* Core Insights */}
           <div className="mb-20 animate-in">
-            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+            <h2 className="text-3xl font-serif font-bold text-primary mb-12 text-center">
               Core Insights
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -102,15 +102,15 @@ const OurThinking = () => {
                 return (
                   <div
                     key={index}
-                    className="glass-card p-8 hover:scale-[1.02] transition-all duration-300"
+                    className="p-8 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-lg transition-all duration-300 group"
                   >
-                    <div className="w-16 h-16 rounded-xl bg-secondary/20 flex items-center justify-center text-secondary mb-4">
+                    <div className="w-16 h-16 rounded-xl bg-white shadow-sm flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
                       <IconComponent size={32} />
                     </div>
-                    <h3 className="text-2xl font-bold text-foreground mb-4">
+                    <h3 className="text-2xl font-serif font-bold text-primary mb-4">
                       {insight.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-slate-600 leading-relaxed text-lg">
                       {insight.description}
                     </p>
                   </div>
@@ -121,21 +121,19 @@ const OurThinking = () => {
 
           {/* Guiding Principles */}
           <div className="mb-20 animate-in">
-            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+            <h2 className="text-3xl font-serif font-bold text-primary mb-12 text-center">
               Guiding Principles
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {principles.map((principle, index) => (
                 <div
                   key={index}
-                  className="glass-card p-6 hover:scale-[1.02] transition-all duration-300"
+                  className="p-6 bg-white rounded-xl border border-slate-200 hover:border-secondary transition-colors duration-300 shadow-sm"
                 >
-                  <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mb-4">
-                    <span className="text-background font-bold text-xl">
-                      {index + 1}
-                    </span>
+                  <div className="w-12 h-12 bg-primary/5 rounded-lg flex items-center justify-center mb-4 text-primary font-bold text-xl">
+                    {index + 1}
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
+                  <h3 className="text-xl font-bold text-primary mb-3">
                     {principle.title}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
@@ -147,31 +145,34 @@ const OurThinking = () => {
           </div>
 
           {/* Approach Section */}
-          <div className="glass-card p-12 bg-gradient-to-r from-secondary/20 to-accent/20 animate-in">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-6 text-foreground">Our Approach</h2>
-              <p className="text-xl leading-relaxed mb-8 text-muted-foreground">
+          <div className="bg-primary rounded-3xl p-12 md:p-16 text-white animate-in shadow-2xl relative overflow-hidden">
+            {/* Decorative Element */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32" />
+
+            <div className="max-w-4xl mx-auto text-center relative z-10">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">Our Approach</h2>
+              <p className="text-lg md:text-xl leading-relaxed mb-12 text-white/90">
                 We combine rigorous research methodologies with innovative communication strategies and comprehensive capacity building to create holistic solutions that drive sustainable social change.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div>
-                  <div className="text-4xl font-bold mb-2 text-foreground">01</div>
-                  <div className="text-lg font-semibold mb-2 text-foreground">Research</div>
-                  <div className="text-muted-foreground">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="group">
+                  <div className="text-5xl font-bold mb-4 text-secondary/40 group-hover:text-secondary transition-colors duration-300">01</div>
+                  <div className="text-xl font-bold mb-2">Research</div>
+                  <div className="text-white/70">
                     Understanding context and evidence
                   </div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2 text-foreground">02</div>
-                  <div className="text-lg font-semibold mb-2 text-foreground">Communicate</div>
-                  <div className="text-muted-foreground">
+                <div className="group">
+                  <div className="text-5xl font-bold mb-4 text-secondary/40 group-hover:text-secondary transition-colors duration-300">02</div>
+                  <div className="text-xl font-bold mb-2">Communicate</div>
+                  <div className="text-white/70">
                     Crafting compelling narratives
                   </div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold mb-2 text-foreground">03</div>
-                  <div className="text-lg font-semibold mb-2 text-foreground">Empower</div>
-                  <div className="text-muted-foreground">
+                <div className="group">
+                  <div className="text-5xl font-bold mb-4 text-secondary/40 group-hover:text-secondary transition-colors duration-300">03</div>
+                  <div className="text-xl font-bold mb-2">Empower</div>
+                  <div className="text-white/70">
                     Building capacity for lasting impact
                   </div>
                 </div>

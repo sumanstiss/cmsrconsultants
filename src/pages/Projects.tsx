@@ -467,14 +467,14 @@ const Projects = () => {
                     <div>
                       <dt className="font-medium text-foreground">Contact</dt>
                       <dd className="flex flex-col gap-2 mt-1">
-                        <a 
+                        <a
                           href={`mailto:${activeProject.contact || 'gajendra@cmsrconsultants.com'}`}
                           className="text-secondary hover:underline flex items-center gap-1"
                         >
                           <Mail size={14} />
                           {activeProject.contact || 'gajendra@cmsrconsultants.com'}
                         </a>
-                        <a 
+                        <a
                           href={`https://mail.google.com/mail/?view=cm&fs=1&to=${activeProject.contact || 'gajendra@cmsrconsultants.com'}&su=Inquiry about ${encodeURIComponent(activeProject.title)}`}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -500,55 +500,54 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main ref={contentRef} className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-secondary/20 text-secondary mb-6">
+            <span className="text-secondary font-bold tracking-wider uppercase text-sm mb-4 block">
               PROJECTS
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6">
               All Projects
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Filter by theme or search titles & summaries
             </p>
           </div>
 
           {/* Filters */}
-          <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div className="flex flex-wrap gap-3">
+          <div className="mb-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="flex flex-wrap gap-2">
               {CATEGORY_LIST.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeCategory === cat
-                      ? 'bg-secondary text-background'
-                      : 'glass-card text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat
+                    ? 'bg-primary text-white shadow-md'
+                    : 'bg-white border border-slate-200 text-slate-600 hover:border-primary/50 hover:text-primary'
+                    }`}
                 >
                   {cat}
                 </button>
               ))}
             </div>
 
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <div className="flex items-center gap-2 w-full md:w-auto">
+              <div className="relative w-full md:w-64">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                 <input
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search projects..."
-                  className="pl-10 pr-10 py-2 border border-border/50 rounded-lg text-sm bg-background/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary/50"
+                  className="w-full pl-10 pr-10 py-2.5 border border-slate-200 rounded-full text-sm bg-white text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
                 />
                 {query && (
                   <button
                     onClick={() => setQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 hover:bg-slate-100 rounded-full transition-colors"
                   >
-                    <X className="w-4 h-4 text-muted-foreground" />
+                    <X className="w-4 h-4 text-slate-400" />
                   </button>
                 )}
               </div>
@@ -556,11 +555,11 @@ const Projects = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="project-card glass-card overflow-hidden group hover:scale-[1.02] transition-all duration-500 flex flex-col"
+                className="project-card bg-white rounded-xl overflow-hidden group hover:shadow-xl border border-slate-100 transition-all duration-500 flex flex-col h-full"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -568,41 +567,42 @@ const Projects = () => {
                     alt={project.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
-                  <span className="absolute bottom-4 left-4 px-3 py-1 rounded-full text-xs font-medium bg-secondary/90 text-background">
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300" />
+                  <span className="absolute bottom-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-white text-primary shadow-sm border border-slate-100">
                     {project.category}
                   </span>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-secondary transition-colors">
+                  <h3 className="text-xl font-serif font-bold text-primary mb-3 leading-tight group-hover:text-secondary transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                    <span className="flex items-center gap-1">
-                      <MapPin size={14} />
+                  <div className="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin size={14} className="text-secondary" />
                       {project.location}
                     </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar size={14} />
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={14} className="text-secondary" />
                       {project.year}
                     </span>
                   </div>
-                  <p className="text-muted-foreground text-sm mb-4 flex-1">{project.summary}</p>
-                  <Button 
-                    variant="neon" 
-                    className="w-full"
+                  <p className="text-slate-600 text-sm mb-6 flex-1 line-clamp-3 leading-relaxed">{project.summary}</p>
+                  <Button
+                    className="w-full bg-slate-50 text-primary hover:bg-primary hover:text-white border border-slate-200 transition-all duration-300 font-semibold"
                     onClick={() => setSelectedProject(project)}
                   >
-                      View Details
-                    </Button>
+                    View Details
+                  </Button>
                 </div>
               </div>
             ))}
           </div>
 
           {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">No projects found matching your criteria.</p>
+            <div className="text-center py-20 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+              <Search className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-slate-700 mb-1">No projects found</h3>
+              <p className="text-slate-500">Try adjusting your search or filter criteria.</p>
             </div>
           )}
         </div>
@@ -614,9 +614,9 @@ const Projects = () => {
           setSelectedProject(null);
         }
       }}>
-        <DialogContent 
-          className="max-w-3xl max-h-[85vh] overflow-y-auto glass-card border-border/50 cursor-default"
-          style={{ 
+        <DialogContent
+          className="max-w-3xl max-h-[85vh] overflow-y-auto bg-white border-none shadow-2xl p-0 cursor-default"
+          style={{
             position: 'fixed',
             left: '50%',
             top: '50%',
@@ -625,101 +625,98 @@ const Projects = () => {
           }}
         >
           {selectedProject && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-foreground mb-2">
-                  {selectedProject.title}
-                </DialogTitle>
-                <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                  <span className="flex items-center gap-1">
-                    <MapPin size={14} />
-                    {selectedProject.location}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Calendar size={14} />
-                    {selectedProject.year}
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/20 text-secondary">
+            <div className="flex flex-col h-full">
+              <div className="relative h-64 md:h-80 w-full overflow-hidden shrink-0">
+                <img
+                  src={selectedProject.images?.[0] || 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&q=80'}
+                  alt={selectedProject.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent flex flex-col justify-end p-8">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-secondary text-primary mb-3 w-fit">
                     {selectedProject.category}
                   </span>
+                  <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-2 leading-tight">
+                    {selectedProject.title}
+                  </h2>
+                  <div className="flex items-center gap-4 text-white/90 text-sm">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin size={16} />
+                      {selectedProject.location}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={16} />
+                      {selectedProject.year}
+                    </span>
+                  </div>
                 </div>
-              </DialogHeader>
-              <div className="space-y-4 mt-4">
-                {selectedProject.images && selectedProject.images.length > 0 && (
-                  <div className="relative h-64 overflow-hidden rounded-lg mb-4">
-                    <img
-                      src={selectedProject.images[0]}
-                      alt={selectedProject.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                )}
-                <div>
-                  <h4 className="text-base font-semibold text-foreground mb-2">Project Summary</h4>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {selectedProject.summary}
-                  </p>
-                </div>
-                {selectedProject.fullText && selectedProject.fullText !== selectedProject.summary && (
-                  <div>
-                    <h4 className="text-base font-semibold text-foreground mb-2">Full Description</h4>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {selectedProject.fullText}
-                    </p>
-                  </div>
-                )}
-                {selectedProject.results && selectedProject.results.length > 0 && (
-                  <div>
-                    <h4 className="text-base font-semibold text-foreground mb-2">Key Results</h4>
-                    <ul className="space-y-2">
-                      {selectedProject.results.map((result, i) => (
-                        <li key={i} className="text-sm text-muted-foreground flex items-start">
-                          <span className="text-secondary mr-2 mt-1 flex-shrink-0">•</span>
-                          <span className="leading-relaxed">{result}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                {(selectedProject.partners && selectedProject.partners.length > 0) || 
-                 selectedProject.budget || 
-                 selectedProject.duration || 
-                 selectedProject.contact ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-border/50">
-                    {selectedProject.partners && selectedProject.partners.length > 0 && (
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">Partners</h4>
-                        <p className="text-sm text-muted-foreground">{selectedProject.partners.join(', ')}</p>
-                      </div>
-                    )}
-                    {selectedProject.budget && (
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">Budget</h4>
-                        <p className="text-sm text-muted-foreground">{selectedProject.budget}</p>
-                      </div>
-                    )}
-                    {selectedProject.duration && (
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">Duration</h4>
-                        <p className="text-sm text-muted-foreground">{selectedProject.duration}</p>
-                      </div>
-                    )}
-                    {selectedProject.contact && (
-                      <div>
-                        <h4 className="text-sm font-semibold text-foreground mb-1">Contact</h4>
-                        <a 
-                          href={`mailto:${selectedProject.contact}`}
-                          className="text-sm text-secondary hover:underline flex items-center gap-1"
-                        >
-                          <Mail size={14} />
-                          {selectedProject.contact}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                ) : null}
               </div>
-            </>
+
+              <div className="p-8 space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="md:col-span-2 space-y-6">
+                    <div>
+                      <h4 className="text-lg font-serif font-bold text-primary mb-3">Project Summary</h4>
+                      <p className="text-slate-600 leading-relaxed">
+                        {selectedProject.fullText || selectedProject.summary}
+                      </p>
+                    </div>
+
+                    {selectedProject.results && selectedProject.results.length > 0 && (
+                      <div>
+                        <h4 className="text-lg font-serif font-bold text-primary mb-3">Key Results</h4>
+                        <ul className="space-y-3">
+                          {selectedProject.results.map((result, i) => (
+                            <li key={i} className="flex items-start text-slate-600">
+                              <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-2 mr-3 flex-shrink-0" />
+                              <span className="leading-relaxed">{result}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="bg-slate-50 p-6 rounded-xl border border-slate-100 h-fit">
+                    <h4 className="font-bold text-primary mb-4 border-b border-slate-200 pb-2">Project Details</h4>
+                    <dl className="space-y-4 text-sm">
+                      {(selectedProject.partners && selectedProject.partners.length > 0) && (
+                        <div>
+                          <dt className="text-slate-500 mb-1">Partners</dt>
+                          <dd className="font-medium text-slate-800">{selectedProject.partners.join(', ')}</dd>
+                        </div>
+                      )}
+                      {selectedProject.budget && (
+                        <div>
+                          <dt className="text-slate-500 mb-1">Budget</dt>
+                          <dd className="font-medium text-slate-800">{selectedProject.budget}</dd>
+                        </div>
+                      )}
+                      {selectedProject.duration && (
+                        <div>
+                          <dt className="text-slate-500 mb-1">Duration</dt>
+                          <dd className="font-medium text-slate-800">{selectedProject.duration}</dd>
+                        </div>
+                      )}
+                      {selectedProject.contact && (
+                        <div>
+                          <dt className="text-slate-500 mb-1">Contact</dt>
+                          <dd className="space-y-2">
+                            <a
+                              href={`mailto:${selectedProject.contact}`}
+                              className="flex items-center gap-2 text-primary hover:text-secondary font-medium transition-colors"
+                            >
+                              <Mail size={14} />
+                              Email Us
+                            </a>
+                          </dd>
+                        </div>
+                      )}
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </DialogContent>
       </Dialog>

@@ -1,14 +1,13 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowDown } from 'lucide-react';
-import { useTheme } from '@/hooks/use-theme';
+import heroImage from '@/assets/community_gathering.jpg';
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
-  const { theme } = useTheme();
 
   useEffect(() => {
     const tl = gsap.timeline({ delay: 0.3 });
@@ -36,23 +35,13 @@ const HeroSection = () => {
       '-=0.3'
     );
 
-    // Floating orbs animation
-    gsap.to('.hero-orb', {
-      y: -20,
-      duration: 3,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut',
-      stagger: 0.5,
-    });
-
     return () => {
       tl.kill();
     };
   }, []);
 
-  const scrollToAbout = () => {
-    document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToMission = () => {
+    document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -60,38 +49,27 @@ const HeroSection = () => {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated Background with Spline Iframe */}
+      {/* Background Image with Parallax Effect */}
       <div className="absolute inset-0 z-0">
-        <iframe 
-          src="https://my.spline.design/futuristicmapinterface-nhKt2kLYqLfhoij6ViFC32cj/"
-          frameBorder="0"
-          className="w-full h-full"
-          style={{ border: 'none' }}
-          title="3D Background"
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105"
+          style={{ backgroundImage: `url(${heroImage})` }}
         />
-        {/* Overlay for text readability - more transparent in dark mode */}
-        <div className={`absolute inset-0 bg-gradient-to-b ${
-          theme === 'dark' 
-            ? 'from-background/40 via-background/30 to-background' 
-            : 'from-background/70 via-background/50 to-background'
-        }`} />
+        {/* Professional Overlay: Deep Blue Gradients */}
+        <div className="absolute inset-0 bg-primary/80 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/70 to-background" />
       </div>
 
-      {/* Floating Orbs */}
-      <div className="hero-orb glow-orb w-[400px] h-[400px] -top-20 -left-20 opacity-60" />
-      <div className="hero-orb glow-orb glow-orb-accent w-[300px] h-[300px] top-1/4 -right-10 opacity-50" />
-      <div className="hero-orb glow-orb glow-orb-gold w-[200px] h-[200px] bottom-1/4 left-1/4 opacity-40" />
+      {/* Abstract Shapes for Depth */}
+      <div className="absolute top-20 right-20 w-64 h-64 bg-secondary/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-48 h-48 bg-accent/20 rounded-full blur-3xl" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Tag */}
-          <div className="inline-block mb-6">
-            <span className={`px-6 py-2 text-xs font-medium tracking-[0.2em] uppercase inline-block rounded-2xl backdrop-blur-lg transition-all duration-500 ${
-              theme === 'light' 
-                ? 'text-foreground bg-white/90 border border-border/50' 
-                : 'glass-card text-secondary'
-            }`}>
+          <div className="inline-block mb-8">
+            <span className="px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase rounded-full bg-white/10 text-secondary border border-white/20 backdrop-blur-sm">
               Social Impact Consultancy
             </span>
           </div>
@@ -99,42 +77,44 @@ const HeroSection = () => {
           {/* Headline */}
           <h1
             ref={headlineRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 opacity-0"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-8 text-white opacity-0 drop-shadow-lg"
           >
-            At CMSR We Deliver{' '}
-            <span className="text-gradient-accent">Best in Class</span>
+            Real-Time Intelligence from the{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-neon-gold">Grassroots</span>
           </h1>
 
           {/* Subtitle */}
           <p
             ref={subtitleRef}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 opacity-0"
+            className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-12 opacity-0 leading-relaxed font-light"
           >
-            Catalyzing the power of research and communication for social equity and progressive change.
+            We empower organizations with rigorous data, human-centric stories, and actionable insights to drive sustainable social change.
           </p>
 
           {/* CTA */}
           <button
             ref={ctaRef}
             onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="glass-card hover:border-secondary/40 px-10 py-5 text-lg font-medium cursor-pointer opacity-0 group inline-flex items-center gap-3"
+            className="px-10 py-4 bg-secondary text-primary text-lg font-bold rounded-full hover:bg-white hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl opacity-0"
           >
-            Contact Us
-            <span className="w-2 h-2 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300" />
+            Partner With Us
           </button>
         </div>
       </div>
 
       {/* Scroll Indicator */}
       <button
-        onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer"
+        onClick={scrollToMission}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 text-white/50 hover:text-white transition-colors duration-300 group cursor-pointer"
       >
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <ArrowDown className="w-5 h-5 animate-bounce" />
+        <span className="text-[10px] tracking-[0.3em] uppercase font-medium">Discover</span>
+        <div className="p-2 border border-white/20 rounded-full group-hover:border-white/50 transition-colors">
+          <ArrowDown className="w-4 h-4 animate-bounce" />
+        </div>
       </button>
     </section>
   );
 };
 
 export default HeroSection;
+

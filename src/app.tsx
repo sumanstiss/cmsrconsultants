@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/use-theme";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import WhoWeAre from "./pages/WhoWeAre";
 import WhatWeDo from "./pages/WhatWeDo";
 import OurThinking from "./pages/OurThinking";
 import Projects from "./pages/Projects";
@@ -17,7 +16,14 @@ import OurTeam from "./pages/OurTeam";
 const queryClient = new QueryClient();
 
 // Get base path from environment or use empty string for root
+// Handle GitHub Pages 404.html redirect
 const basePath = import.meta.env.BASE_URL || "/";
+
+// Handle GitHub Pages SPA redirect
+if (window.location.search.includes('?/')) {
+  const path = window.location.search.replace('?/', '').replace(/~and~/g, '&');
+  window.history.replaceState({}, '', basePath + path);
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -28,7 +34,6 @@ const App = () => (
         <BrowserRouter basename={basePath}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/who-we-are" element={<WhoWeAre />} />
             <Route path="/what-we-do" element={<WhatWeDo />} />
             <Route path="/our-thinking" element={<OurThinking />} />
             <Route path="/projects" element={<Projects />} />

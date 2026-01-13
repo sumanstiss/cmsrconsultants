@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Merriweather:wght@300;400;700;900&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -6,103 +7,123 @@
 
 @layer base {
   :root {
-    /* Light mode - White base with Deep Blue & Gold accents */
+    /* Professional Palette: Deep Blue & Amber */
+    /* Background: #FFFFFF */
     --background: 0 0% 100%;
-    --foreground: 216 71% 10%;
+    /* Foreground: #000000 */
+    --foreground: 0 0% 0%;
 
+    /* Card: slightly off-white for depth */
     --card: 0 0% 98%;
-    --card-foreground: 216 71% 10%;
+    --card-foreground: 211 85% 24%;
 
-    --popover: 0 0% 98%;
-    --popover-foreground: 216 71% 10%;
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 211 85% 24%;
 
-    --primary: 209 83% 30%;
+    /* Primary: #093C73 (Deep Blue) */
+    --primary: 211 85% 24%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 43 100% 50%;
-    --secondary-foreground: 216 71% 10%;
+    /* Secondary: #FFBF00 (Amber) */
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 211 85% 24%;
 
-    --muted: 216 20% 90%;
-    --muted-foreground: 216 30% 40%;
+    /* Muted */
+    --muted: 210 20% 96%;
+    --muted-foreground: 211 20% 40%;
 
-    --accent: 270 70% 60%;
+    /* Accent: #3F81BE (Light Blue) */
+    --accent: 209 50% 50%;
     --accent-foreground: 0 0% 100%;
 
+    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 216 20% 85%;
-    --input: 216 20% 90%;
-    --ring: 209 83% 50%;
+    /* Border & Input */
+    --border: 211 30% 90%;
+    --input: 211 30% 90%;
+    --ring: 211 85% 24%;
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
-    /* Extended palette */
-    --neon-cyan: 185 100% 50%;
-    --neon-violet: 270 100% 70%;
-    --neon-gold: 43 100% 55%;
-    
+    /* Extended Professional Palette */
+    /* Derived from #3F81BE but brighter for neon effects */
+    --neon-cyan: 209 80% 60%;
+    /* Derived from #093C73 but lighter/purpler */
+    --neon-violet: 220 70% 60%;
+    /* Amber #FFBF00 */
+    --neon-gold: 45 100% 50%;
+
     /* Glassmorphism - Light mode */
     --glass-bg: 0 0% 100%;
-    --glass-border: 216 71% 10%;
-    
+    --glass-border: 211 85% 24%;
+
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(209 83% 30%) 0%, hsl(270 70% 50%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(43 100% 50%) 0%, hsl(30 100% 60%) 100%);
+    /* Deep Blue to Light Blue */
+    --gradient-primary: linear-gradient(135deg, hsl(211 85% 24%) 0%, hsl(209 50% 50%) 100%);
+    /* Amber to lighter Gold */
+    --gradient-accent: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(40 100% 60%) 100%);
+    /* White fade */
     --gradient-dark: linear-gradient(180deg, hsl(0 0% 95%) 0%, hsl(0 0% 100%) 100%);
-    --gradient-glow: radial-gradient(circle, hsl(209 83% 50% / 0.2) 0%, transparent 70%);
-    
-    /* Shadows */
-    --shadow-glow: 0 0 60px hsl(209 83% 50% / 0.2);
-    --shadow-neon: 0 0 30px hsl(185 100% 50% / 0.3);
-    --shadow-gold: 0 0 40px hsl(43 100% 50% / 0.2);
+    /* Glow */
+    --gradient-glow: radial-gradient(circle, hsl(211 85% 24% / 0.15) 0%, transparent 70%);
+
+    /* Shadows - softer, more professional */
+    --shadow-glow: 0 0 40px hsl(211 85% 24% / 0.15);
+    --shadow-neon: 0 0 20px hsl(209 50% 50% / 0.2);
+    --shadow-gold: 0 0 30px hsl(45 100% 50% / 0.2);
   }
 
+  /* No dark mode for this professional site as per request (White BG), 
+     but keeping variables valid just in case to avoid breaking shadcn */
   .dark {
-    /* Dark mode - Deep Blue base */
-    --background: 216 71% 10%;
+    /* Mapped to Light Mode intentionally for now or very dark blue */
+    --background: 211 85% 10%;
+    /* Very dark version of primary */
+    --foreground: 0 0% 100%;
 
-    --foreground: 210 40% 98%;
+    --card: 211 85% 15%;
+    --card-foreground: 0 0% 100%;
 
-    --card: 216 71% 12%;
-    --card-foreground: 210 40% 98%;
+    --popover: 211 85% 15%;
+    --popover-foreground: 0 0% 100%;
 
-    --popover: 216 71% 12%;
-    --popover-foreground: 210 40% 98%;
+    --primary: 209 50% 50%;
+    /* Lighter blue for dark mode primary */
+    --primary-foreground: 0 0% 100%;
 
-    --primary: 209 83% 30%;
-    --primary-foreground: 210 40% 98%;
+    --secondary: 45 100% 50%;
+    --secondary-foreground: 211 85% 24%;
 
-    --secondary: 43 100% 50%;
-    --secondary-foreground: 216 71% 10%;
+    --muted: 211 30% 20%;
+    --muted-foreground: 211 20% 70%;
 
-    --muted: 216 50% 20%;
-    --muted-foreground: 215 20% 65%;
+    --accent: 211 85% 24%;
+    --accent-foreground: 0 0% 100%;
 
-    --accent: 270 70% 60%;
-    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 216 40% 25%;
-    --input: 216 40% 20%;
-    --ring: 209 83% 50%;
+    --border: 211 30% 20%;
+    --input: 211 30% 20%;
+    --ring: 209 50% 50%;
 
     /* Glassmorphism - Dark mode */
-    --glass-bg: 216 71% 15%;
+    --glass-bg: 211 85% 15%;
     --glass-border: 0 0% 100%;
-    
+
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(209 83% 30%) 0%, hsl(270 70% 50%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(43 100% 50%) 0%, hsl(30 100% 60%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(216 71% 8%) 0%, hsl(216 71% 15%) 100%);
-    --gradient-glow: radial-gradient(circle, hsl(209 83% 50% / 0.3) 0%, transparent 70%);
-    
+    --gradient-primary: linear-gradient(135deg, hsl(209 50% 50%) 0%, hsl(211 85% 30%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(30 100% 60%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(211 85% 8%) 0%, hsl(211 85% 15%) 100%);
+    --gradient-glow: radial-gradient(circle, hsl(209 50% 50% / 0.2) 0%, transparent 70%);
+
     /* Shadows */
-    --shadow-glow: 0 0 60px hsl(209 83% 50% / 0.3);
-    --shadow-neon: 0 0 30px hsl(185 100% 50% / 0.4);
-    --shadow-gold: 0 0 40px hsl(43 100% 50% / 0.3);
+    --shadow-glow: 0 0 60px hsl(209 50% 50% / 0.2);
+    --shadow-neon: 0 0 30px hsl(209 80% 60% / 0.2);
+    --shadow-gold: 0 0 40px hsl(45 100% 50% / 0.2);
   }
 }
 
@@ -133,6 +154,7 @@
 }
 
 @layer components {
+
   /* Glassmorphism Cards */
   .glass {
     background: hsl(var(--glass-bg) / 0.4);
@@ -167,14 +189,14 @@
 
   .glass-card {
     @apply glass rounded-2xl p-6 transition-all duration-500;
-    box-shadow: 
+    box-shadow:
       0 8px 32px hsl(var(--primary) / 0.1),
       inset 0 1px 0 hsl(var(--glass-border) / 0.1);
   }
 
   .glass-card:hover {
     transform: translateY(-8px);
-    box-shadow: 
+    box-shadow:
       0 20px 60px hsl(var(--primary) / 0.2),
       inset 0 1px 0 hsl(var(--glass-border) / 0.15);
     border-color: hsl(var(--glass-border) / 0.25);
@@ -189,7 +211,7 @@
   .glass-input:focus {
     outline: none;
     border-color: hsl(var(--neon-cyan) / 0.6);
-    box-shadow: 
+    box-shadow:
       0 0 20px hsl(var(--neon-cyan) / 0.2),
       inset 0 0 20px hsl(var(--neon-cyan) / 0.05);
   }
@@ -301,19 +323,24 @@
 }
 
 @layer utilities {
+
   /* Animation delays */
   .animation-delay-200 {
     animation-delay: 200ms;
   }
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
+
   .animation-delay-600 {
     animation-delay: 600ms;
   }
+
   .animation-delay-800 {
     animation-delay: 800ms;
   }
+
   .animation-delay-1000 {
     animation-delay: 1000ms;
   }
