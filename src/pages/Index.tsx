@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Preloader from '@/components/Preloader';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
-import AboutSection from '@/components/AboutSection';
+// import AboutSection from '@/components/AboutSection';
 
 import MissionSection from '@/components/MissionSection';
 import ProcessSection from '@/components/ProcessSection';
@@ -16,8 +16,11 @@ import Footer from '@/components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Module-level variable to track if the preloader has been shown in this session (resets on refresh)
+let hasVisited = false;
+
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!hasVisited);
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,6 +32,7 @@ const Index = () => {
 
   const handleLoadComplete = () => {
     setIsLoading(false);
+    hasVisited = true;
     gsap.fromTo(
       mainRef.current,
       { opacity: 0 },
@@ -54,7 +58,7 @@ const Index = () => {
         <main>
           <HeroSection />
           <MissionSection />
-          <AboutSection />
+          {/* <AboutSection /> */}
           <ProcessSection />
           <ProjectsSection />
           <OurPresence />

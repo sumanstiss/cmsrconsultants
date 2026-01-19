@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import gsap from 'gsap';
-import cmsrLogo from '@/assets/CMSR Logo.png';
+import cmsrLogo from '@/assets/CMSR_Logo.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,12 +59,11 @@ const Navigation = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'What We Do', href: '/what-we-do' },
-    { name: 'Our Thinking', href: '/our-thinking' },
+    { name: 'About Us', href: '/our-thinking' },
+    { name: 'Our Services', href: '/what-we-do' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Careers', href: '/careers' },
     { name: 'Our Team', href: '/our-team' },
-    { name: 'Contact', href: '/location' },
+    { name: 'Resources', href: '/careers' },
   ];
 
   return (

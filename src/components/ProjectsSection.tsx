@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
@@ -272,10 +273,10 @@ const ProjectsSection = () => {
                     )}
 
                     {/* CTA */}
-                    <button className="flex items-center gap-2 text-sm font-bold text-secondary uppercase tracking-wider group/btn hover:underline decoration-2 underline-offset-4">
+                    <Link to="/projects" className="flex items-center gap-2 text-sm font-bold text-secondary uppercase tracking-wider group/btn hover:underline decoration-2 underline-offset-4">
                       Explore Projects
                       <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-300" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

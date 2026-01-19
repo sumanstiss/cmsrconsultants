@@ -133,7 +133,7 @@ const ContactSection = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="glass-input"
+                className="bg-white rounded-xl px-6 py-4 w-full border border-slate-200 shadow-[inset_0_2px_4px_rgba(9,60,115,0.05)] focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary/50 text-foreground placeholder:text-muted-foreground/70 transition-all duration-300"
                 placeholder="Your name"
               />
             </div>
@@ -152,7 +152,7 @@ const ContactSection = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="glass-input"
+                className="bg-white rounded-xl px-6 py-4 w-full border border-slate-200 shadow-[inset_0_2px_4px_rgba(9,60,115,0.05)] focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary/50 text-foreground placeholder:text-muted-foreground/70 transition-all duration-300"
                 placeholder="your@email.com"
               />
             </div>
@@ -171,7 +171,7 @@ const ContactSection = () => {
                 onChange={handleChange}
                 required
                 rows={5}
-                className="glass-input resize-none"
+                className="bg-white rounded-xl px-6 py-4 w-full border border-slate-200 shadow-[inset_0_2px_4px_rgba(9,60,115,0.05)] resize-none focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary/50 text-foreground placeholder:text-muted-foreground/70 transition-all duration-300"
                 placeholder="Tell us about your project..."
               />
             </div>
@@ -179,7 +179,7 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="submit-btn contact-input opacity-0 w-full glass-card px-8 py-5 font-medium flex items-center justify-center gap-3 hover:border-secondary/40 transition-all duration-300 disabled:opacity-50 group"
+              className="submit-btn contact-input opacity-0 w-full bg-white border border-slate-100 shadow-lg px-8 py-5 font-medium flex items-center justify-center gap-3 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 group rounded-xl"
             >
               {isSubmitting ? (
                 <span className="flex items-center gap-2">
@@ -197,8 +197,8 @@ const ContactSection = () => {
 
           {/* Contact Info */}
           <div className="contact-info-container space-y-6">
-            <div className="contact-info glass-card opacity-0">
-              <div className="flex items-start gap-4">
+            <div className="contact-info bg-white rounded-xl border border-slate-100 shadow-md opacity-0 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+              <div className="p-6 flex items-start gap-4">
                 <div className="p-3 rounded-xl bg-secondary/10">
                   <MapPin className="w-6 h-6 text-secondary" />
                 </div>
@@ -223,14 +223,14 @@ const ContactSection = () => {
               </div>
             </div>
 
-            <div className="contact-info glass-card opacity-0">
-              <div className="flex items-start gap-4">
+            <div className="contact-info bg-white rounded-xl border border-slate-100 shadow-md opacity-0 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300">
+              <div className="p-6 flex items-start gap-4">
                 <div className="p-3 rounded-xl bg-secondary/10">
                   <Mail className="w-6 h-6 text-secondary" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
-                  <a 
+                  <a
                     href="mailto:gajendra@cmsrconsultants.com"
                     className="text-secondary hover:underline text-sm"
                   >
@@ -242,7 +242,7 @@ const ContactSection = () => {
 
             {/* Google Map */}
             <div className="contact-info opacity-0">
-              <div className="glass-card p-4 rounded-xl overflow-hidden">
+              <div className="bg-white rounded-xl border border-slate-100 shadow-md p-4 overflow-hidden hover:shadow-xl hover:shadow-primary/20 transition-all duration-300">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-semibold">Find Us</h4>
                   <a
@@ -279,13 +279,13 @@ const ContactSection = () => {
                   href="https://in.linkedin.com/company/cmsr-consultants-pvt-ltd"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-card p-4 hover:border-secondary/40 transition-all duration-300 group"
+                  className="bg-white rounded-xl border border-slate-100 shadow-md p-4 hover:shadow-xl hover:shadow-primary/20 hover:scale-110 transition-all duration-300 group"
                 >
                   <Linkedin className="w-5 h-5 group-hover:text-secondary transition-colors duration-300" />
                 </a>
                 <a
                   href="mailto:gajendra@cmsrconsultants.com"
-                  className="glass-card p-4 hover:border-secondary/40 transition-all duration-300 group"
+                  className="bg-white rounded-xl border border-slate-100 shadow-md p-4 hover:shadow-xl hover:shadow-primary/20 hover:scale-110 transition-all duration-300 group"
                 >
                   <Mail className="w-5 h-5 group-hover:text-secondary transition-colors duration-300" />
                 </a>

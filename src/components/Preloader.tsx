@@ -1,124 +1,170 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { Search, MessageSquareText, Zap } from 'lucide-react';
+import cmsrLogo from '@/assets/CMSR_Logo.png';
 
 interface PreloaderProps {
   onComplete: () => void;
 }
 
 const Preloader = ({ onComplete }: PreloaderProps) => {
-  const preloaderRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
-  const percentRef = useRef<HTMLSpanElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const [percent, setPercent] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const tl = gsap.timeline();
+    let mm = gsap.matchMedia();
 
-    // Animate logo entrance
-    tl.fromTo(
-      logoRef.current,
-      { opacity: 0, scale: 0.8, y: 20 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power3.out' }
-    );
-
-    // Animate progress bar
-    tl.to(
-      progressBarRef.current,
-      {
-        width: '100%',
-        duration: 1.5,
-        ease: 'power2.inOut',
-        onUpdate: function () {
-          const progress = Math.round(this.progress() * 100);
-          setPercent(progress);
-        },
-      },
-      '-=0.3'
-    );
-
-    // Fade out sequence
-    tl.to(logoRef.current, {
-      opacity: 0,
-      y: -30,
-      duration: 0.5,
-      ease: 'power2.in',
+    mm.add("(min-width: 640px)", () => {
+      // Desktop Setup
+      runAnimation(160);
     });
 
-    tl.to(
-      preloaderRef.current,
-      {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.8,
-        ease: 'power3.inOut',
+    mm.add("(max-width: 639px)", () => {
+      // Mobile Setup
+      runAnimation(112);
+    });
+
+    function runAnimation(gap: number) {
+      const tl = gsap.timeline({
         onComplete: () => {
-          if (preloaderRef.current) {
-            preloaderRef.current.style.display = 'none';
-          }
-          onComplete();
-        },
-      },
-      '-=0.3'
-    );
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: onComplete
+          });
+        }
+      });
+
+      // Initial setup: Logo faded out
+      gsap.set('.header-logo', { opacity: 0, y: -20 });
+
+      // Items setup: All hidden initially
+      gsap.set(itemsRef.current, { opacity: 0, scale: 0.5 });
+
+      // Animation Sequence
+
+      // 1. Logo Enter
+      tl.to('.header-logo', {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+
+      // 2. Evidence (Item 0) Enters Center (at +gap)
+      gsap.set(itemsRef.current[0], { x: gap, opacity: 0, scale: 0 });
+      // Show Evidence (Centered) at Scale 1
+      tl.to(itemsRef.current[0], {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: 'back.out(1.7)'
+      }, 'sequenceStart'); // Start together
+
+      // Wait a bit
+      tl.to({}, { duration: 0.5 });
+
+      // Slide Evidence Left (to 0) AND Shrink to 75%
+      tl.to(itemsRef.current[0], {
+        x: 0,
+        scale: 0.75,
+        duration: 0.8,
+        ease: 'power2.inOut'
+      }, 'slide1');
+
+      // Insight appears at Center (natural position 0) at 100% scale
+      gsap.set(itemsRef.current[1], { x: 0, opacity: 0, scale: 0 });
+      tl.to(itemsRef.current[1], {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: 'back.out(1.7)'
+      }, 'slide1+=0.3');
+
+      // Insight shrinks to 75%
+      tl.to(itemsRef.current[1], {
+        scale: 0.75,
+        duration: 0.4,
+        ease: 'power2.inOut'
+      });
+
+      // Wait
+      tl.to({}, { duration: 0.5 });
+
+      // Impact appears at Right (natural position 0) at 100% scale
+      gsap.set(itemsRef.current[2], { x: 0, opacity: 0, scale: 0 });
+      tl.to(itemsRef.current[2], {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: 'back.out(1.7)'
+      });
+
+      // Impact shrinks to 75%
+      tl.to(itemsRef.current[2], {
+        scale: 0.75,
+        duration: 0.4,
+        ease: 'power2.inOut'
+      });
+
+      // Hold final state
+      tl.to({}, { duration: 1 });
+
+      // Exit Up
+      tl.to('.header-logo', { y: -20, opacity: 0, duration: 0.4 }, 'exit');
+      tl.to(itemsRef.current, { y: -20, opacity: 0, stagger: 0.1, duration: 0.4 }, 'exit');
+    }
 
     return () => {
-      tl.kill();
+      // mm.revert() is called automatically? 
+      // It's good practice to revert matchMedia on unmount.
+      mm.revert();
     };
   }, [onComplete]);
 
   return (
     <div
-      ref={preloaderRef}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
+      ref={containerRef}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white"
     >
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="glow-orb w-[600px] h-[600px] -top-40 -left-40 animate-glow-pulse" />
-        <div className="glow-orb glow-orb-accent w-[500px] h-[500px] -bottom-32 -right-32 animate-glow-pulse animation-delay-400" />
-        <div className="glow-orb glow-orb-gold w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-glow-pulse animation-delay-200" />
+      {/* Header Logo */}
+      <div className="header-logo absolute top-10 sm:top-1/4 opacity-0">
+        <img
+          src={cmsrLogo}
+          alt="CMSR Consultants"
+          className="w-auto h-16 sm:h-20 object-contain"
+        />
       </div>
 
-      {/* Logo & Progress */}
-      <div ref={logoRef} className="relative z-10 flex flex-col items-center">
-        {/* Animated Logo */}
-        <div className="mb-12">
-          <div className="text-5xl md:text-7xl font-bold tracking-tight">
-            <span className="text-foreground">CMSR</span>
+
+
+      {/* Items Container */}
+      <div className="flex items-center justify-center gap-8 sm:gap-16 mt-20 sm:mt-0">
+
+        {/* Evidence */}
+        <div ref={el => { itemsRef.current[0] = el; }} className="flex flex-col items-center gap-4">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-900 flex items-center justify-center text-white shadow-lg">
+            <Search size={40} strokeWidth={1.5} />
           </div>
-          <div className="text-sm md:text-base text-muted-foreground tracking-[0.3em] mt-2 text-center">
-            CONSULTANTS
-          </div>
+          <span className="text-xl sm:text-2xl font-bold text-blue-900 tracking-wide">Evidence</span>
         </div>
 
-        {/* Progress Container */}
-        <div className="w-64 md:w-80">
-          {/* Progress Bar Background */}
-          <div className="h-1 bg-muted rounded-full overflow-hidden">
-            <div
-              ref={progressBarRef}
-              className="h-full w-0 rounded-full"
-              style={{
-                background: 'linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--neon-cyan)) 100%)',
-              }}
-            />
+        {/* Insight */}
+        <div ref={el => { itemsRef.current[1] = el; }} className="flex flex-col items-center gap-4">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-900 flex items-center justify-center text-white shadow-lg">
+            <MessageSquareText size={40} strokeWidth={1.5} />
           </div>
-
-          {/* Percentage */}
-          <div className="mt-4 text-center">
-            <span
-              ref={percentRef}
-              className="text-2xl md:text-3xl font-light text-muted-foreground tabular-nums"
-            >
-              {percent}%
-            </span>
-          </div>
+          <span className="text-xl sm:text-2xl font-bold text-blue-900 tracking-wide">Insight</span>
         </div>
-      </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs text-muted-foreground/50 tracking-widest uppercase">
-        Loading Experience
+        {/* Impact */}
+        <div ref={el => { itemsRef.current[2] = el; }} className="flex flex-col items-center gap-4">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-900 flex items-center justify-center text-white shadow-lg">
+            <Zap size={40} strokeWidth={1.5} />
+          </div>
+          <span className="text-xl sm:text-2xl font-bold text-blue-900 tracking-wide">Impact</span>
+        </div>
+
       </div>
     </div>
   );

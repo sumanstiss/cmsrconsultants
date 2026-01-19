@@ -349,7 +349,22 @@ const SERVICES = [
     title: 'Research & Evaluation',
     subtitle: 'Evidence-driven decisions',
     short: 'Independent & policy research, evaluations, M&E, baselines, feasibility studies and market research.',
-    long: 'We conduct rigorous research and evaluations using mixed methods — from baseline to endline, rapid assessments to complex policy analysis. We design surveys, manage data collection, and deliver actionable recommendations to improve programs and policies.',
+    long: (
+      <>
+        <p className="mb-4">
+          Research and Evaluation constitute one of the core areas of CMSR Consultants. We provide broad based consultancy in the domains of Social Research, Policy Research, Market Research, Communication Research, Formative Research, Surveys,  Exit Polls, etc. Additionally, CMSR is well-equipped to conduct independent research, with experts in quantitative and qualitative research methods, as well as a robust network of surveyors and data collectors across the country. We are updated with the latest technologies in social research, and use CAPI, SPSS, STATA, ATLASti, etc. in our research, based on the project’s requirements. With extensive training and on-ground experience in a range of research tools, CMSR can conduct workshops on research methodology, research ethics, and participatory research tools. The Core Research team comes from diverse disciplines – Sociology, Economics, Political Science, Agriculture, Geography, Disaster Management, Livelihood and social entrepreneurship etc. There is an extensive network of field executives, supervisors, and managers to conduct large scale research or evaluation studies in any part of the country. CMSR provides its services in terms of:
+        </p>
+        <ul className="space-y-1 ml-4">
+          <li>● Independent Research.</li>
+          <li>● Policy Research.</li>
+          <li>● Market Research.</li>
+          <li>● Communication Research.</li>
+          <li>● Formative Research.</li>
+          <li>● Surveys.</li>
+          <li>● Exit Polls.</li>
+        </ul>
+      </>
+    ),
     icon: BarChart3,
   },
   {
@@ -479,7 +494,7 @@ const WhatWeDo = () => {
                   </div>
                 </div>
                 <div className="flex-1 text-slate-600 md:pl-8 md:border-l border-slate-200 leading-relaxed text-lg">
-                  <p>{selectedService.long}</p>
+                  <div>{selectedService.long}</div>
                 </div>
               </div>
             </div>

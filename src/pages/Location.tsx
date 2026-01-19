@@ -216,7 +216,7 @@ const Location = () => {
               <h2 className="text-3xl md:text-4xl font-serif font-bold mb-10">National Footprint</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <div className="text-5xl font-bold text-secondary mb-2">24+</div>
+                  <div className="text-5xl font-bold text-secondary mb-2">25+</div>
                   <div className="text-xl text-white/80 font-medium">States & UTs</div>
                 </div>
                 <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">

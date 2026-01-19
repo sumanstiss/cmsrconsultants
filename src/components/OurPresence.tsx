@@ -140,14 +140,14 @@ const OurPresence = () => {
 
           {/* Counter Section */}
           <div ref={counterRef} className="flex flex-col items-center lg:items-start space-y-8">
-            <div className="bg-primary/5 p-8 md:p-10 rounded-3xl rounded-tl-none border-l-4 border-secondary w-full max-w-md hover:bg-primary/10 transition-colors duration-300">
+            <div className="bg-white p-8 md:p-10 rounded-3xl rounded-tl-none border border-slate-100 w-full max-w-md hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-primary/20 group">
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 rounded-xl bg-white shadow-md flex items-center justify-center text-primary shrink-0">
+                <div className="w-14 h-14 rounded-xl bg-primary/5 group-hover:bg-primary/10 shadow-sm flex items-center justify-center text-primary shrink-0 transition-colors">
                   <MapPin size={28} strokeWidth={2.5} />
                 </div>
                 <div>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-7xl font-bold text-primary tracking-tight font-serif">
+                    <span className="text-7xl font-bold text-primary tracking-tight font-serif drop-shadow-sm">
                       {count}
                     </span>
                     <span className="text-4xl font-bold text-secondary">+</span>
@@ -156,7 +156,7 @@ const OurPresence = () => {
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-primary/10">
+              <div className="mt-6 pt-6 border-t border-slate-100">
                 <p className="text-slate-600 text-lg leading-relaxed">
                   Our extensive network spans across the nation, enabling us to gather local insights and implement scalable solutions in diverse environments.
                 </p>
