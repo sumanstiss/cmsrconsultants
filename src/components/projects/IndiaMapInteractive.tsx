@@ -11,12 +11,12 @@ const STATE_THEME_DATA: Record<string, Record<string, number>> = {
     'Assam': { 'Agriculture & Livelihood': 1, 'Health & Nutrition': 2 },
     'Bihar': { 'Agriculture & Livelihood': 2, 'Health & Nutrition': 1, 'Education & Skill Development': 1 },
     'Chhattisgarh': { 'Agriculture & Livelihood': 6, 'Health & Nutrition': 7, 'Education & Skill Development': 5, 'Environment & Climate Change': 6, 'WASH': 5 },
-    'Dadra and Nagar Haveli': { 'Education & Skill Development': 1 }, // Adjusted name for likely map match
-    'Delhi': { 'Agriculture & Livelihood': 1, 'Environment & Climate Change': 1, 'WASH': 1, 'Sustainable Transportation': 1, 'Urban Planning & Public Policy': 1 },
+    'Dadara & Nagar Havelli': { 'Education & Skill Development': 1 }, // Adjusted name for likely map match
+    'NCT of Delhi': { 'Agriculture & Livelihood': 1, 'Environment & Climate Change': 1, 'WASH': 1, 'Sustainable Transportation': 1, 'Urban Planning & Public Policy': 1 },
     'Gujarat': { 'Agriculture & Livelihood': 1, 'Education & Skill Development': 1, 'Environment & Climate Change': 1 },
     'Haryana': { 'Agriculture & Livelihood': 2, 'Health & Nutrition': 1, 'Education & Skill Development': 1 },
     'Himachal Pradesh': { 'Education & Skill Development': 2, 'WASH': 1 },
-    'Jammu and Kashmir': { 'Health & Nutrition': 1 },
+    'Jammu & Kashmir': { 'Health & Nutrition': 1, 'Agriculture & Livelihood': 1 },
     'Jharkhand': { 'Agriculture & Livelihood': 1, 'Environment & Climate Change': 1 },
     'Karnataka': { 'Agriculture & Livelihood': 1, 'Environment & Climate Change': 1, 'WASH': 1, 'Sustainable Transportation': 1, 'Urban Planning & Public Policy': 1 },
     'Kerala': { 'Agriculture & Livelihood': 1 },

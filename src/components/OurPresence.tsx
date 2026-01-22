@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MapPin } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
-import indiaMap from '@/assets/India_map.svg';
+import IndiaMapInteractive from '@/components/projects/IndiaMapInteractive';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,17 +122,7 @@ const OurPresence = () => {
           {/* Map Section */}
           <div ref={mapRef} className="relative group">
             <div className="relative z-10 p-4 bg-white rounded-3xl shadow-xl border border-gray-100 transition-shadow duration-500 group-hover:shadow-2xl">
-              <div className="relative w-full aspect-[4/3] flex items-center justify-center overflow-hidden rounded-2xl bg-slate-50">
-                <img
-                  src={indiaMap}
-                  alt="India Map - Our Presence"
-                  className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
-                  style={{
-                    // Filter to match #093C73 (Deep Blue) approximately
-                    filter: 'invert(18%) sepia(35%) saturate(3665%) hue-rotate(198deg) brightness(92%) contrast(93%)'
-                  }}
-                />
-              </div>
+              <IndiaMapInteractive className="w-full h-full min-h-[400px]" />
             </div>
             {/* Decorative blob behind map */}
             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/5 to-secondary/5 rounded-[2.5rem] blur-2xl -z-10" />
